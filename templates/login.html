@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<img src="https://login.weixin.qq.com/qrcode/{{ qcode }}">
+
+
+<script src="/static/jquery-3.1.1.js"></script>
+<script>
+    $(function () {
+        check_login();
+    })
+
+    function check_login() {
+        $.ajax({
+            type:"GET",
+            dataType:"JSON",
+            url:"/check_login/",
+            success:function (callback) {
+                if (callback.status==201){
+                    $("img").attr("src",callback.avator_src)
+                    check_login()
+                }
+                if (callback.status==408){
+                    check_login()
+                }
+                if (callback.status==200){
+                    location.href="/user/"
+                }
+
+            }
+        })
+    }
+
+
+
+
+</script>
+</body>
+</html>

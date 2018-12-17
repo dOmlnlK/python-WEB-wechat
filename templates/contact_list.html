@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="float: left;width: 20%">
+    {% for item in contact_dic.MemberList%}
+        <li>{{ item.UserName }}---{{ item.NickName }}</li>
+    {% endfor %}
+</div>
+
+<div style="float: left;width: 80%">
+    <input id="toUser" name="toUser" placeholder="输入发送的对象">
+    <textarea id="msg" name="msg" placeholder="输入消息内容"></textarea>
+    <input type="submit" id="sendbtn">
+
+</div>
+
+<script src="/static/jquery-3.1.1.js"></script>
+<script>
+    $(
+            function () {
+                bindSend();
+            }
+    )
+
+
+    function bindSend() {
+        $("#sendbtn").click(function () {
+            $.ajax({
+                url:"/send_msg/",
+                type:"GET",
+                data:{"toUser":$("#toUser").val(),"msg":$("#msg").val()},
+                success:function (callback) {
+
+                }
+            })
+        })
+    }
+
+
+</script>
+
+</body>
+</html>

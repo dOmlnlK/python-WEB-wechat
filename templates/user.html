@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <p>最近联系人</p>
+    <ul>
+        {% for item in ContactList %}
+            <li>{{ item.NickName }}</li>
+        {% endfor %}
+            <li><a href="/contact_list/">获取更多联系人</a></li>
+    </ul>
+
+    <p>公众号</p>
+    <ul>
+        {% for item in MPSubscribeMsgList %}
+            <li>{{ item.NickName }}</li>
+            {% for msg in item.MPArticleList %}
+                <div>
+                    <a href="{{ msg.Url }}">{{ msg.Title }}</a>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+
+
+    </ul>
+
+
+
+
+
+
+
+</div>
+
+
+</body>
+</html>
